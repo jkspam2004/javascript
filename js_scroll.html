@@ -1,0 +1,57 @@
+<html>
+<head>
+  <title>Javascript Scrolling Demo</title>
+  <!-- borrowed from someone's demo script -->
+  <style>
+    body {
+      background-color: black;
+      font-family: monospace;
+      color: white;
+      font-size: 50px;
+      text-align: center;
+      margin-top: 20%;
+    }
+    #scroll {
+      color: #777;
+      border-right: 1px solid #777;
+      padding-right: 10px;
+      display: inline;
+    }
+  </style>
+
+  Watch me <div id="scroll"></div>
+
+  <script>
+    var words = ["soar", "run until I'm a blur", "fall and get up", "start over", "never give up"],
+      el = document.getElementById('scroll'),
+      word_counter = 0,
+      character_counter = 0;
+
+    function updateText() {
+      if (words[word_counter][character_counter] == ' ') { // whitespace character
+        el.innerHTML += '&nbsp;';
+        character_counter++;
+      } else { // keep concatenating non-whitespace characters
+        el.innerHTML = el.innerHTML + words[word_counter][character_counter++];
+      }
+
+      //console.log("word_counter = ", words[word_counter].length, "char counter=", character_counter);
+      if (character_counter == words[word_counter].length + 1) {
+        word_counter++;         // move to the next word phrase
+        character_counter = 0;  // reset character count
+        el.innerHTML = '';      // reset innerHTML
+
+        //if we're displaying the last word, go back to the first word
+        if (word_counter == words.length) {
+          word_counter = 0;
+        }
+      }
+    }
+
+    setInterval(updateText,1000); // milliseconds
+  </script>
+  </head>
+<body>
+
+</body>
+</html>
