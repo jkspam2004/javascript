@@ -1,0 +1,40 @@
+What is the difference between synchronous and asynchronous programming?
+
+http://stackoverflow.com/questions/16336367/what-is-the-difference-between-synchronous-and-asynchronous-programming-in-node
+
+The difference is that in the first example, the program will block in the first line. The next line (console.log) will have to wait.
+
+In the second example, the console.log will be executed WHILE the query is being processed. That is, the query will be processed in the background, while your program is doing other things, and once the query data is ready, you will do whatever you want with it.
+
+So, in a nutshell:
+
+The first example will block, while the second wont.
+
+The output of the following two examples:
+
+//example 1
+var result = database.query("SELECT * FROM hugetable");
+console.log("query finished");
+console.log("Next line");
+
+
+//example 2
+database.query("SELECT * FROM hugetable", function(result) {
+    console.log("query finished");
+});
+console.log("Next line");
+Would be:
+
+1. query finished
+   Next line
+2. Next line
+   query finished
+
+Note
+While Node itself is single threaded, there are some task that can run in parallel. For example, File System operations occur in a different process.
+That's why Node can do async operations: one thread is doing file system operations, while the main Node thread keeps executing your javascript code.
+You can read more about this here: How the single threaded non blocking IO model works in Node.js
+
+
+Synchronous way: It waits for each operation to complete, after that only it executes the next operation. 
+Asynchronous way: It never waits for each operation to complete, rather it executes all operations in the first GO only. 
