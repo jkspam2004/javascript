@@ -1,0 +1,30 @@
+Object Prototypes
+As we have seen, we can make Objects very conveniently using Object Constructors. 
+There is one drawback with the method we have shown you so far. Everything added to 
+this in our constructor will be duplicated 1 for 1 into each new instance we create.
+
+function Player(name):
+    this.name = name;
+    this.score = 0;
+    this.victory = function(){
+        console.log(this.player+" won with "+this.score+" points!");
+    }
+}
+
+let Oscar = new Player("Oscar");
+let Eli = new Player("Eli");
+
+Oscar and Eli both have unique name and score properties. If Eli's score goes to 100, 
+Oscar's score stays at 0. However, it's not just the properties that get copied, the 
+victory method gets copied into each instance as well. At this point, with two Player 
+instances, we have two identical victory methods stored in memory. That might not seem
+like much of a problem now, but let's see how that scales. Say we had a 60 line function 
+in the Player class and made 100 instances. We now have 6000 lines of code stored in memory 
+when all you need is 60.
+
+The .prototype object
+We want to store the functions a single time, then give each of our instances a reference 
+or pointer to those functions so they can all use them. This is what the .prototype property 
+lets us do. When we make an object constructor it automatically get a prototype property 
+added to it. This prototype is an object and acts as a place to store common information 
+that all instances of that object can access.
