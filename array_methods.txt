@@ -1,0 +1,71 @@
+Built In Array Methods
+We have shown you how to write a few methods that act on Arrays. However, there are many methods already build into the Array class that we can use. Here we will cover some of the more commonly used ones. Remember that Arrays are just objects and they have properties and methods like any other object. For example, arr.length in a property, and arr.pop() is a method.
+
+Accessor Methods
+These methods give us some information about the array.
+
+.indexOf
+indexOf return the first index at which a given value is found in the array. If it is not found, it returns -1.
+
+let arr = [1,3,5,7,9,7];
+arr.indexOf(7);  //OUTPUT: '3'
+.find
+find return the first element in the array that passes the condition callback it is given. If no values pass, it returns undefined.
+
+let arr = [17,16,15,14];
+arr.find(function(element){
+    return element % 5 == 0;
+});
+//OUTPUT: '15'
+Mutator Methods
+These methods return a new modified array. They do not edit the original Array.
+
+.concat
+concat merges the Array it is passed to the end of the Array it is called from, and returns it as a new Array.
+
+let arr = [1,3,5];
+let arr_two = [7,9];
+let arr_three = arr.concat(arr_two);
+console.log(arr);       //OUTPUT: '[ 1, 3, 5 ]'
+console.log(arr_three); //OUTPUT: '[ 1, 3, 5, 7, 9 ]'
+.filter
+filter returns an Array of all values that pass the condition callback.
+
+let arr = [1,2,3,4,5,6]
+let filtered = arr.filter(function(element){
+    return element % 2 == 0;
+});
+console.log(filtered);  //OUTPUT: '[ 2, 4, 6 ]'
+.map
+map returns an array of values that have been processed by the callback.
+
+let arr = [1, 2, 3]
+let threes = arr.map(function(element){
+    return element * 3;
+})
+conssole.log(threes);  //OUTPUT: '[ 3, 6, 9 ]'
+Iteration Methods
+These methods iterate through every element in the array, calling the callback on each one.
+
+.forEach
+let arr = ["Oscar", "Anna", "Brendan"];
+arr.forEach(function(element){
+    console.log(element);
+})
+//OUTPUT:
+// 'Oscar'
+// 'Anna'
+// 'Brendan'
+.reduce
+reduce applies the callback against a memo and each element of the array (from left-to-right), reducing it to a single value. The memo defaults to 0 if not given.
+
+let arr = [0, 1, 2, 3];
+let sum = arr.reduce(function(memo, element){
+    return memo + element;
+});
+console.log(sum);  //OUTPUT: '6'
+let arr = [0, 1, 2, 3];
+let sum = arr.reduce(function(memo, element){
+    return memo + element;
+}, 3);             // the extra input is the memo starting value
+console.log(sum);  //OUTPUT: '9'

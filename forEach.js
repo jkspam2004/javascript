@@ -14,7 +14,7 @@ function logArrayElements(element, index, array) {
 
 // Notice that index 2 is skipped since there is no item at
 // that position in the array.
-[2, 5, , 9].forEach(logArrayElements);
+[2, 5, , 9].forEach(logArrayElements); // es5
 // logs:
 // a[0] = 2
 // a[1] = 5

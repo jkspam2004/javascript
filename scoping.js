@@ -71,3 +71,16 @@ console.log("\nexample 5");
 var myName = function () {
     console.log ("Rich");
 } 
+
+/* example 6 */
+function ParentFunction(name){
+    this.name = name;
+    var self = this;
+    function childFunction(){
+        console.log(self.name);
+        console.log(this.name); // undefined
+    }
+    return new childFunction();
+}
+var x = new ParentFunction("oscar");
+

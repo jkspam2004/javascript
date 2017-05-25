@@ -14,7 +14,7 @@ http://stackoverflow.com/questions/762011/whats-the-difference-between-using-let
 */
 
 let x = 3;
-console.log(x); // 3
+console.log(`x: ${x}`); // 3
 
 // redeclaration not allowed with let. ok with var
 let me = "foo";
@@ -26,4 +26,5 @@ var you = "bar"; // no problem
 // let is block scoped
 // var is function scoped
 
-
+let y;
+console.log(`y: ${y}`);
